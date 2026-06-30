@@ -4,7 +4,7 @@
 
 **A modular, production-grade PyTorch implementation accompanying the manuscript:**
 _"A Novel CNN-Attention-BiLSTM Hybrid Deep Learning Model for Wind Turbine Power Forecasting Using SCADA Data"_
-Md. Uzzal Mia, Sajib Debnath, Arindam Kishor Biswas, Md. Sarwar Hosain, Tetsuya Shimamura
+Md. Uzzal Mia, Sajib Debnath, Remon Das, Arindam Kishor Biswas, Md. Sarwar Hosain, Tetsuya Shimamura
 
 <br/>
 
@@ -448,6 +448,7 @@ Released under the [MIT License](LICENSE).
 
 - **Md. Uzzal Mia** — Pabna University of Science and Technology, Bangladesh
 - **Sajib Debnath** (Member, IEEE) — AES Corporation, Louisville, CO, USA
+- - **Rimon Das** (Member, IEEE) — Dominion Energy, Richmond, VA, USA
 - **Arindam Kishor Biswas** — University of the Cumberlands, USA
 - **Md. Sarwar Hosain** (Member, IEEE) — Pabna University of Science and Technology, Bangladesh
 - **Tetsuya Shimamura** (Senior Member, IEEE) — Saitama University, Japan
