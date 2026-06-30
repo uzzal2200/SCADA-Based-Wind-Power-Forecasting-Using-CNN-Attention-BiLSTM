@@ -185,15 +185,6 @@ End-to-end framework, from raw SCADA acquisition to comparative evaluation:
 
 ![Overall framework](assets/overall_model_architecture.png)
 
-```mermaid
-flowchart LR
-    A["1. Data Acquisition<br/>Vestas V52 SCADA<br/>14yr · 10-min · 22 channels"] -->
-    B["2. Preprocessing &<br/>Feature Engineering<br/>filter · sin/cos encode · scale"] -->
-    C["3. Sequence Construction<br/>& Chronological Split<br/>T=144 · 70/15/15"] -->
-    D["4. Modelling & Training<br/>CNN-Attn-BiLSTM<br/>+ 5 baselines"] -->
-    E["5. Evaluation & Analysis<br/>RMSE/MAE/R²/MAPE/sMAPE/PSNR<br/>+ Wilcoxon tests"]
-```
-
 ---
 
 ## Hybrid Model Architecture Diagram
@@ -202,14 +193,7 @@ The proposed CNN-Attention-BiLSTM, layer by layer (input `T=144, F=8`):
 
 ![Hybrid architecture](assets/hybrid_architecture.png)
 
-```mermaid
-flowchart LR
-    X["Input Sequence<br/>(B,144,8)"] --> CNN["CNN Feature Extractor<br/>2x Conv1D(k=3,C=64)+BN+ReLU<br/>Dropout 0.2<br/>(B,144,64)"]
-    CNN --> BI["BiLSTM x2<br/>H=128/direction<br/>(B,144,256)"]
-    BI --> AT["Additive Self-Attention<br/>Linear 256→1, softmax(T)<br/>weighted sum → context"]
-    AT --> FC["FC Output Head<br/>256→64 (ReLU+Dropout) →64→1"]
-    FC --> OUT["Predicted Power<br/>P̂(t+1) [kW]"]
-```
+
 
 | Layer | Block                   | Configuration                              | Output shape |
 | ----- | ----------------------- | ------------------------------------------ | ------------ |
