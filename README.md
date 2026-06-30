@@ -72,10 +72,6 @@ study — built to be readable, testable, and directly reusable for new
 turbines, sites, or SCADA datasets, rather than a single monolithic
 notebook.
 
-> **Verified fidelity:** every architecture in `wtpf/models/` reproduces
-> the _exact_ trainable-parameter counts reported in the paper's Table 6
-> (e.g. CNN = 18,433; CNN-Attention-BiLSTM = 624,898), enforced by an
-> automated regression test (`tests/test_models.py`) and the CI workflow.
 
 ---
 
