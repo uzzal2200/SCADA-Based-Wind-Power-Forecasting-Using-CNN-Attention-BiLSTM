@@ -1,0 +1,165 @@
+# =============================================================================
+# Configuration — CNN-Attention-BiLSTM Wind Turbine Power Forecasting
+# Values mirror the paper: Mia, Debnath, Biswas, Hosain & Shimamura (2026)
+# =============================================================================
+
+project:
+  name: "wtpf-cnn-attention-bilstm"
+  seed: 42
+  device: "auto"            # "auto" | "cuda" | "cpu"
+
+# -----------------------------------------------------------------------------
+# Dataset
+# -----------------------------------------------------------------------------
+data:
+  raw_csv_path: "data/raw/VestasV52_10_min_raw_SCADA_DkIT.csv"
+  processed_dir: "data/processed"
+  timestamp_col: "Timestamps"
+  target_col: "Power"
+
+  # Operational range filtering (Sec. III-C.1)
+  wind_speed_min: 0.0
+  wind_speed_max: 25.0
+  power_min_kw: 5.0
+
+  # Turbine nameplate metadata (Table 2)
+  turbine_model: "Vestas V52"
+  rated_capacity_kw: 850
+  rotor_diameter_m: 52
+  hub_height_m: 60
+  cut_in_ms: 3.5
+  rated_ws_ms: 14.0
+  cut_out_ms: 25.0
+
+# -----------------------------------------------------------------------------
+# Feature engineering (Sec. III-C.2 / III-C.3) — Eq. (1)-(3)
+# -----------------------------------------------------------------------------
+features:
+  wind_dir_col: "WindDirAbs"
+  # Final 8 input features used by the model (Eq. 3)
+  selected_features:
+    - "WindSpeed"          # v_ws
+    - "dir_sin"            # sin(theta)
+    - "dir_cos"            # cos(theta)
+    - "StdDevWindSpeed"    # sigma_v
+    - "RotorRPM"           # omega_r
+    - "Pitch"              # beta
+    - "NacelTemp"          # T_n
+    - "GearOilTemp"        # T_g
+  # Engineered but excluded from the final feature set (negligible |r| < 0.05)
+  excluded_engineered_features:
+    - "hour_sin"
+    - "hour_cos"
+    - "Theoretical_Power"
+
+# -----------------------------------------------------------------------------
+# Sequence construction (Eq. 5) & chronological split
+# -----------------------------------------------------------------------------
+sequence:
+  lookback_window: 144      # T = 144 (24h of 10-min records)
+  horizon: 1                 # single-step-ahead prediction
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  shuffle: false              # strictly chronological, no shuffling
+
+# -----------------------------------------------------------------------------
+# Model architecture (Sec. III-D, Table 3)
+# -----------------------------------------------------------------------------
+model:
+  name: "cnn_attention_bilstm"   # see src/wtpf/models/factory.py for options
+  input_features: 8               # F
+  sequence_length: 144             # T
+
+  cnn:
+    num_layers: 2
+    channels: 64
+    kernel_size: 3
+    padding: 1
+    dropout: 0.2
+
+  bilstm:
+    num_layers: 2
+    hidden_size: 128                # H (per direction -> 2H = 256)
+    dropout: 0.2
+
+  attention:
+    type: "additive"                # single-head additive (Bahdanau-style)
+    dropout: 0.2
+
+  fc_head:
+    hidden_dim: 64
+    dropout: 0.2
+
+# -----------------------------------------------------------------------------
+# Training procedure (Sec. III-F, Table 4)
+# -----------------------------------------------------------------------------
+training:
+  batch_size: 256
+  max_epochs: 100
+  learning_rate: 0.001
+  weight_decay: 0.00001
+  optimizer: "adam"                 # "adam" | "adamw"
+  loss: "huber"
+  huber_delta: 1.0
+  grad_clip_max_norm: 1.0
+
+  lr_scheduler:
+    type: "reduce_on_plateau"
+    patience: 20
+    factor: 0.5
+
+  early_stopping:
+    patience: 15
+    monitor: "val_loss"
+
+  num_workers: 2
+  checkpoint_dir: "checkpoints"
+  log_dir: "logs"
+
+# -----------------------------------------------------------------------------
+# Baselines participating in the comparative study (Sec. III-E)
+# -----------------------------------------------------------------------------
+baselines:
+  - "cnn"
+  - "lstm"
+  - "bilstm"
+  - "cnn_bilstm"
+  - "attention_bilstm"
+  - "cnn_attention_bilstm"     # proposed model
+
+# -----------------------------------------------------------------------------
+# Ablation variants (Sec. IV-I, Table 10)
+# -----------------------------------------------------------------------------
+ablation:
+  - "no_cnn"            # Input -> BiLSTM -> Attn -> FC
+  - "no_attention"       # CNN -> BiLSTM -> Mean-Pool -> FC
+  - "uni_lstm"            # CNN -> UniLSTM -> Attn -> FC
+  - "no_soft_pool"        # CNN -> BiLSTM -> last hidden state -> FC
+  - "full"                # full proposed CNN-Attention-BiLSTM
+
+# -----------------------------------------------------------------------------
+# Evaluation (Sec. III-G)
+# -----------------------------------------------------------------------------
+evaluation:
+  metrics: ["rmse", "mae", "r2", "mape", "smape", "psnr"]
+  mape_power_threshold_kw: 5.0
+  smape_eps: 1.0e-8
+  psnr_eps: 1.0e-8
+
+  power_bands_kw:
+    Low: [0, 100]
+    Medium: [100, 300]
+    High: [300, 600]
+    Rated: [600, 900]
+
+  seasons:
+    Winter: [12, 1, 2]
+    Spring: [3, 4, 5]
+    Summer: [6, 7, 8]
+    Autumn: [9, 10, 11]
+
+  statistical_test:
+    method: "wilcoxon"
+    bonferroni_alpha: 0.05
+    num_comparisons: 5            # -> corrected alpha* = 0.01
