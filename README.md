@@ -237,7 +237,7 @@ All hyperparameters live in [`configs/config.yaml`](configs/config.yaml) — not
 ### 1. Clone and create an environment
 
 ```bash
-git clone <this-repository-url>
+git clone https://github.com/uzzal2200/SCADA-Based-Wind-Power-Forecasting-Using-CNN-Attention-BiLSTM.git
 cd wind-turbine-power-forecasting
 
 conda create -n wtpf python=3.10 -y
