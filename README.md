@@ -72,7 +72,6 @@ study — built to be readable, testable, and directly reusable for new
 turbines, sites, or SCADA datasets, rather than a single monolithic
 notebook.
 
-
 ---
 
 ## Dataset Information
@@ -193,8 +192,6 @@ The proposed CNN-Attention-BiLSTM, layer by layer (input `T=144, F=8`):
 
 ![Hybrid architecture](assets/hybrid_architecture.png)
 
-
-
 | Layer | Block                   | Configuration                              | Output shape |
 | ----- | ----------------------- | ------------------------------------------ | ------------ |
 | 1     | Input                   | 8 SCADA features, T=144                    | (B,144,8)    |
@@ -243,8 +240,8 @@ All hyperparameters live in [`configs/config.yaml`](configs/config.yaml) — not
 git clone <this-repository-url>
 cd wind-turbine-power-forecasting
 
-python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
+conda create -n wtpf python=3.10 -y
+conda activate wtpf
 ```
 
 ### 2. Install dependencies
