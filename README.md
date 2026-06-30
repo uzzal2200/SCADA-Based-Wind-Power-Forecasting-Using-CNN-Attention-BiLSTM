@@ -416,7 +416,7 @@ If you use this code, please cite the accompanying manuscript:
 @article{mia2026cnnattentionbilstm,
   title   = {A Novel CNN-Attention-BiLSTM Hybrid Deep Learning Model for
              Wind Turbine Power Forecasting Using SCADA Data},
-  author  = {Mia, Md. Uzzal and Debnath, Sajib and Biswas, Arindam Kishor
+  author  = {Mia, Md. Uzzal and Debnath, Sajib and Das, Rimon and Biswas, Arindam Kishor
              and Hosain, Md. Sarwar and Shimamura, Tetsuya},
   journal = {IEEE Access},
   year    = {2026}
@@ -448,7 +448,7 @@ Released under the [MIT License](LICENSE).
 
 - **Md. Uzzal Mia** — Pabna University of Science and Technology, Bangladesh
 - **Sajib Debnath** (Member, IEEE) — AES Corporation, Louisville, CO, USA
-- - **Rimon Das** (Member, IEEE) — Dominion Energy, Richmond, VA, USA
+- **Rimon Das** (Member, IEEE) — Dominion Energy, Richmond, VA, USA
 - **Arindam Kishor Biswas** — University of the Cumberlands, USA
 - **Md. Sarwar Hosain** (Member, IEEE) — Pabna University of Science and Technology, Bangladesh
 - **Tetsuya Shimamura** (Senior Member, IEEE) — Saitama University, Japan
