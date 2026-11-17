@@ -82,8 +82,8 @@ This repository accompanies the published article:
 
 > Mia, M. U., Debnath, S., Das, R., Biswas, A. K., Hosain, M. S., &
 > Shimamura, T. (2026). A novel CNN-attention-BiLSTM hybrid deep learning
-> model for wind turbine power forecasting using SCADA data. *Energy
-> Conversion and Management: X, 32*, 102367.
+> model for wind turbine power forecasting using SCADA data. _Energy
+> Conversion and Management: X, 32_, 102367.
 
 - **DOI:** [10.1016/j.ecmx.2026.102367](https://doi.org/10.1016/j.ecmx.2026.102367)
 - **Published paper:** [`Paper/1-s2.0-S2590174526008500-main.pdf`](Paper/1-s2.0-S2590174526008500-main.pdf)
@@ -103,8 +103,7 @@ localized temporal feature extraction, a two-layer bidirectional long
 short-term memory (BiLSTM) network for long-range sequential modelling, and a
 single-head additive self-attention mechanism for adaptive timestep weighting,
 all trained in one fully differentiable pipeline. The model is evaluated on
-14 years of 10-minute Vestas V52 SCADA records (30 January 2006 to 12 March
-2020) from Dundalk Institute of Technology, Ireland: 653,103 raw records
+14 years of 10-minute Vestas V52 SCADA records (30 January 2006 to 12 March 2020) from Dundalk Institute of Technology, Ireland: 653,103 raw records
 across 22 sensor channels, the longest single-turbine evaluation horizon
 reported in the open literature. Sine-cosine encoding resolves the 0°/360°
 circular discontinuity, and a strictly chronological 70/15/15 split prevents
@@ -521,16 +520,9 @@ Released under the [MIT License](LICENSE).
 
 - **Md. Uzzal Mia** — Pabna University of Science and Technology, Bangladesh
 - **Sajib Debnath** (Member, IEEE) — AES Corporation, Louisville, CO, USA
-<<<<<<< HEAD
-- **Remon Das**
-=======
+  <<<<<<< HEAD
+- # **Remon Das**
 - **Rimon Das** (Member, IEEE) — Dominion Energy, Richmond, VA, USA
->>>>>>> 92847aa5705c7933a92cfccf386144797dc96642
 - **Arindam Kishor Biswas** — University of the Cumberlands, USA
 - **Md. Sarwar Hosain** (Member, IEEE) — Pabna University of Science and Technology, Bangladesh
 - **Tetsuya Shimamura** (Senior Member, IEEE) — Saitama University, Japan
-
-## Acknowledgments
-
-Built on the public Vestas V52 DkIT SCADA dataset (Byrne & MacArtain,
-2022). No external funding was received for this work.
