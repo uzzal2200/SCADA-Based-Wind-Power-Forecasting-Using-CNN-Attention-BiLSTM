@@ -297,7 +297,7 @@ All hyperparameters live in [`configs/config.yaml`](configs/config.yaml) — not
 ### 1. Clone and create an environment
 
 ```bash
-git clone <this-repository-url>
+git clone https://github.com/uzzal2200/SCADA-Based-Wind-Power-Forecasting-Using-CNN-Attention-BiLSTM.git
 cd wind-turbine-power-forecasting
 
 conda create -n wtpf python=3.10 -y
@@ -479,6 +479,7 @@ If you use this code, please cite the accompanying manuscript:
              Shimamura, Tetsuya},
   title   = {A Novel CNN-Attention-BiLSTM Hybrid Deep Learning Model for
              Wind Turbine Power Forecasting Using SCADA Data},
+<<<<<<< HEAD
   journal = {Energy Conversion and Management: X},
   volume  = {32},
   pages   = {102367},
@@ -486,6 +487,12 @@ If you use this code, please cite the accompanying manuscript:
   issn    = {2590-1745},
   doi     = {10.1016/j.ecmx.2026.102367},
   url     = {https://doi.org/10.1016/j.ecmx.2026.102367}
+=======
+  author  = {Mia, Md. Uzzal and Debnath, Sajib and Das, Rimon and Biswas, Arindam Kishor
+             and Hosain, Md. Sarwar and Shimamura, Tetsuya},
+  journal = {IEEE Access},
+  year    = {2026}
+>>>>>>> 92847aa5705c7933a92cfccf386144797dc96642
 }
 ```
 
@@ -514,7 +521,11 @@ Released under the [MIT License](LICENSE).
 
 - **Md. Uzzal Mia** — Pabna University of Science and Technology, Bangladesh
 - **Sajib Debnath** (Member, IEEE) — AES Corporation, Louisville, CO, USA
+<<<<<<< HEAD
 - **Remon Das**
+=======
+- **Rimon Das** (Member, IEEE) — Dominion Energy, Richmond, VA, USA
+>>>>>>> 92847aa5705c7933a92cfccf386144797dc96642
 - **Arindam Kishor Biswas** — University of the Cumberlands, USA
 - **Md. Sarwar Hosain** (Member, IEEE) — Pabna University of Science and Technology, Bangladesh
 - **Tetsuya Shimamura** (Senior Member, IEEE) — Saitama University, Japan
