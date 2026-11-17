@@ -520,8 +520,6 @@ Released under the [MIT License](LICENSE).
 
 - **Md. Uzzal Mia** — Pabna University of Science and Technology, Bangladesh
 - **Sajib Debnath** (Member, IEEE) — AES Corporation, Louisville, CO, USA
-  <<<<<<< HEAD
-- # **Remon Das**
 - **Rimon Das** (Member, IEEE) — Dominion Energy, Richmond, VA, USA
 - **Arindam Kishor Biswas** — University of the Cumberlands, USA
 - **Md. Sarwar Hosain** (Member, IEEE) — Pabna University of Science and Technology, Bangladesh
