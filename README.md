@@ -4,7 +4,7 @@
 
 **A modular, production-grade PyTorch implementation accompanying the manuscript:**
 _"A Novel CNN-Attention-BiLSTM Hybrid Deep Learning Model for Wind Turbine Power Forecasting Using SCADA Data"_
-Md. Uzzal Mia, Sajib Debnath, Arindam Kishor Biswas, Md. Sarwar Hosain, Tetsuya Shimamura
+Md. Uzzal Mia, Sajib Debnath, Remon Das, Arindam Kishor Biswas, Md. Sarwar Hosain, Tetsuya Shimamura
 
 <br/>
 
@@ -23,6 +23,8 @@ Md. Uzzal Mia, Sajib Debnath, Arindam Kishor Biswas, Md. Sarwar Hosain, Tetsuya 
 ## Table of Contents
 
 - [Overview](#overview)
+- [Published Paper](#published-paper)
+- [Abstract](#abstract)
 - [Dataset Information](#dataset-information)
 - [Code Information](#code-information)
 - [Repository Structure](#repository-structure)
@@ -71,6 +73,64 @@ significance testing, seasonal and power-band analysis, and ablation
 study — built to be readable, testable, and directly reusable for new
 turbines, sites, or SCADA datasets, rather than a single monolithic
 notebook.
+
+---
+
+## Published Paper
+
+This repository accompanies the published article:
+
+> Mia, M. U., Debnath, S., Das, R., Biswas, A. K., Hosain, M. S., &
+> Shimamura, T. (2026). A novel CNN-attention-BiLSTM hybrid deep learning
+> model for wind turbine power forecasting using SCADA data. *Energy
+> Conversion and Management: X, 32*, 102367.
+
+- **DOI:** [10.1016/j.ecmx.2026.102367](https://doi.org/10.1016/j.ecmx.2026.102367)
+- **Published paper:** [`Paper/1-s2.0-S2590174526008500-main.pdf`](Paper/1-s2.0-S2590174526008500-main.pdf)
+- **ScienceDirect:** [Article page](https://www.sciencedirect.com/science/article/pii/S2590174526008500)
+
+## Abstract
+
+Accurate short-term wind turbine power forecasting underpins reliable grid
+operation, economic dispatch, and the large-scale integration of renewable
+energy. Existing data-driven forecasters, however, rarely capture localized
+temporal features and long-range bidirectional dependencies within a single
+end-to-end model, frequently mis-encode the circular wind direction variable,
+and are validated on comparatively short, often year-long records. To address
+these gaps, this study proposes a novel CNN-Attention-BiLSTM hybrid
+architecture that integrates a two-layer 1D convolutional network for
+localized temporal feature extraction, a two-layer bidirectional long
+short-term memory (BiLSTM) network for long-range sequential modelling, and a
+single-head additive self-attention mechanism for adaptive timestep weighting,
+all trained in one fully differentiable pipeline. The model is evaluated on
+14 years of 10-minute Vestas V52 SCADA records (30 January 2006 to 12 March
+2020) from Dundalk Institute of Technology, Ireland: 653,103 raw records
+across 22 sensor channels, the longest single-turbine evaluation horizon
+reported in the open literature. Sine-cosine encoding resolves the 0°/360°
+circular discontinuity, and a strictly chronological 70/15/15 split prevents
+data leakage. Benchmarked against five progressive baselines (CNN, LSTM,
+BiLSTM, CNN-BiLSTM, and Attention-BiLSTM) over six complementary metrics, the
+proposed model attains the best score on every criterion: R² = 0.9716,
+RMSE = 35.42 kW, MAE = 23.19 kW, MAPE = 7.38%, sMAPE = 5.98%, and
+PSNR = 27.60 dB, reducing RMSE by 52.3% over the CNN baseline and 18.9% over
+the strongest competing baseline. Additional benchmarking against four
+state-of-the-art time-series architectures (TCN, Wavelet-LSTM, Informer, and
+PatchTST) confirms superiority over modern forecasting models, reducing RMSE
+by 6.3% over PatchTST, the strongest competitor. Bonferroni-corrected
+Wilcoxon signed-rank tests confirm all gains are statistically significant
+(p ≪ 0.01, effect size r ≥ 0.461). A physics-informed composite loss
+eliminates non-physical negative predictions and reduces RMSE to 34.31 kW
+(3.1% reduction). Transfer learning on two geographically distinct UK wind
+farms confirms cross-turbine generalizability from 850 kW to 2.3 MW rated
+capacity. MIMO multi-step forecasting achieves R² = 0.9139 at 1-hour ahead
+(SCADA only) and R² = 0.8312 at 24-hour ahead (with ERA5 NWP integration),
+and Monte Carlo Dropout yields a calibrated 90% prediction interval
+(PICP = 0.923), establishing the framework as a scalable, practically
+deployable solution for SCADA-based wind power forecasting.
+
+**Keywords:** Wind turbine power forecasting; SCADA data; deep learning;
+CNN-Attention-BiLSTM; additive self-attention; hybrid deep learning model;
+time-series forecasting; renewable energy; short-term forecasting.
 
 ---
 
@@ -414,12 +474,18 @@ If you use this code, please cite the accompanying manuscript:
 
 ```bibtex
 @article{mia2026cnnattentionbilstm,
+  author  = {Mia, Md. Uzzal and Debnath, Sajib and Das, Remon and
+             Biswas, Arindam Kishor and Hosain, Md. Sarwar and
+             Shimamura, Tetsuya},
   title   = {A Novel CNN-Attention-BiLSTM Hybrid Deep Learning Model for
              Wind Turbine Power Forecasting Using SCADA Data},
-  author  = {Mia, Md. Uzzal and Debnath, Sajib and Biswas, Arindam Kishor
-             and Hosain, Md. Sarwar and Shimamura, Tetsuya},
-  journal = {IEEE Access},
-  year    = {2026}
+  journal = {Energy Conversion and Management: X},
+  volume  = {32},
+  pages   = {102367},
+  year    = {2026},
+  issn    = {2590-1745},
+  doi     = {10.1016/j.ecmx.2026.102367},
+  url     = {https://doi.org/10.1016/j.ecmx.2026.102367}
 }
 ```
 
@@ -448,6 +514,7 @@ Released under the [MIT License](LICENSE).
 
 - **Md. Uzzal Mia** — Pabna University of Science and Technology, Bangladesh
 - **Sajib Debnath** (Member, IEEE) — AES Corporation, Louisville, CO, USA
+- **Remon Das**
 - **Arindam Kishor Biswas** — University of the Cumberlands, USA
 - **Md. Sarwar Hosain** (Member, IEEE) — Pabna University of Science and Technology, Bangladesh
 - **Tetsuya Shimamura** (Senior Member, IEEE) — Saitama University, Japan
